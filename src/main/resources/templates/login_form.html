@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{|/user/login|}" method="post" class="flex flex-col gap-7">
+    <input type="text" class="input" name="username" placeholder="아이디" >
+    <input type="text" class="input" name="password" placeholder="비밀번호" >
+    <input type="submit" class="btn" value="로그인" style="width:400px;">
+</form>
+<a href="/user/signup">회원가입</a>
+</body>
+
+</html>

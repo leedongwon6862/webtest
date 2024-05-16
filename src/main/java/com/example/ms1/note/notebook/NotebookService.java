@@ -22,4 +22,15 @@ public class NotebookService {
     public Notebook save(Notebook notebook) {
         return notebookRepository.save(notebook);
     }
+
+    public void delete(Long id) {
+        Notebook notebook = getNotebook (id);
+        notebookRepository.deleteById (id);
+    }
+
+    public void update(Long id, String name) {
+        Notebook notebook =getNotebook (id);
+        notebook.setName (name);
+        notebookRepository.save (notebook);
+    }
 }
