@@ -42,6 +42,7 @@ public class MainService {
 
         mainDataDto.setTargetNotebook(targetNotebook);
         mainDataDto.setTargetNote(targetNote);
+        mainDataDto.setNoteList(targetNotebook.getNoteList());
 
         return mainDataDto;
     }
@@ -58,9 +59,25 @@ public class MainService {
         Notebook notebook = new Notebook();
         notebook.setName("새노트북");
 
-        notebookService.save(notebook);
-        noteService.saveDefault(notebook);
+        Note note = noteService.saveDefault();
+        notebook.addNote(note);
 
-        return notebook;
+        return notebookService.save(notebook);
+    }
+
+    public void saveGroupNotebook(Long notebookId) {
+        Notebook parent = this.getNotebook(notebookId);
+        Notebook child = this.saveDefaultNotebook();
+        parent.addChild(child);
+
+        notebookService.save(parent);
+    }
+
+    public Notebook addToNotebook(Long notebookId) {
+        Notebook notebook = this.getNotebook(notebookId);
+        Note note = noteService.saveDefault();
+        notebook.addNote(note);
+
+        return notebookService.save(notebook);
     }
 }
